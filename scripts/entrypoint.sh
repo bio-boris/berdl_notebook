@@ -25,12 +25,12 @@ fi
 # Set correct permissions for home directory.
 chown -R "${JUPYTERHUB_USER}:${JUPYTERHUB_GROUP}" /home/"${JUPYTERHUB_USER}"
 
-# Create user's .jupyter config directory.
+# Create user's .jupyter configs directory.
 USER_JUPYTER_CONFIG_DIR="/home/${JUPYTERHUB_USER}/.jupyter"
 mkdir -p "${USER_JUPYTER_CONFIG_DIR}"
 chown "${JUPYTERHUB_USER}:${JUPYTERHUB_GROUP}" "${USER_JUPYTER_CONFIG_DIR}"
 
-# Copy JupyterLab config file. (Dockerfile should copy this to /tmp)
+# Copy JupyterLab configs file. (Dockerfile should copy this to /tmp)
 cp /scripts/jupyter_lab_config.py "${USER_JUPYTER_CONFIG_DIR}/jupyter_lab_config.py"
 chown "${JUPYTERHUB_USER}:${JUPYTERHUB_GROUP}" "${USER_JUPYTER_CONFIG_DIR}/jupyter_lab_config.py"
 
