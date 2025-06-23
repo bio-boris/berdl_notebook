@@ -1,0 +1,4 @@
+jupyterhub==4.*
+notebook==7.*
+jupyterlab
+psutil
