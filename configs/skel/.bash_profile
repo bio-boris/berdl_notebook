@@ -1,5 +1,7 @@
 # This section is managed by the container's entrypoint script.
 # It ensures proper environment loading for login shells.
+# NOTICE FOR BERDL_USERS: This will get overwritten on container restart. Do not modify this file #
+# NOTICE FOR BERDL_USERS: You can modify your .custom_profile instead #
 
 # Source .bashrc for interactive shell configurations and core PATH.
 if [ -f ~/.bashrc ]; then
