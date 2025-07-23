@@ -30,13 +30,14 @@ USER_JUPYTER_CONFIG_DIR="/home/${JUPYTERHUB_USER}/.jupyter"
 mkdir -p "${USER_JUPYTER_CONFIG_DIR}"
 chown "${JUPYTERHUB_USER}:${JUPYTERHUB_GROUP}" "${USER_JUPYTER_CONFIG_DIR}"
 
+
 # Copy JupyterLab configs file. (Dockerfile should copy this to /tmp)
 cp /configs/jupyter_lab_config.py "${USER_JUPYTER_CONFIG_DIR}/jupyter_lab_config.py"
 cp /configs/jupyter_lab_config.py "${USER_JUPYTER_CONFIG_DIR}/jupyter_lab_config.py"
 chown "${JUPYTERHUB_USER}:${JUPYTERHUB_GROUP}" "${USER_JUPYTER_CONFIG_DIR}/jupyter_lab_config.py"
 
-
-
+touch /home/${JUPYTERHUB_USER}/.custom_profile
+chown "${JUPYTERHUB_USER}:${JUPYTERHUB_GROUP}" "/home/${JUPYTERHUB_USER}/.custom_profile"
 
 # Switch to user and start JupyterLab.
 echo "Switching to user ${JUPYTERHUB_USER} and starting JupyterLab..."
