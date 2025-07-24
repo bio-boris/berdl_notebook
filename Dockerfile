@@ -1,21 +1,22 @@
-FROM bitnami/spark:4.0.0
+FROM quay.io/jupyter/pyspark-notebook:spark-4.0.0
 USER root
 
-ENV TINI_VERSION v0.19.0
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini  /usr/local/bin/tini
-RUN chmod +x /usr/local/bin/tini
 
 # PYTHON
 COPY configs /configs
-RUN pip3 install --no-cache-dir -r /configs/requirements.txt
+RUN mamba env list
+RUN echo hello
+RUN mamba env update --file /configs/environment.yaml
 
 # SHELL
-COPY configs/skel/ /etc/skel/
+COPY configs/skel/.bash_aliases /etc/skel/
+COPY configs/docker_statcks_hooks/* /usr/local/bin/before-notebook.d/
 
 # MINIO
 
 
-COPY scripts/ /scripts/
-RUN chmod +x /scripts/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/tini", "--"]
-CMD ["/scripts/entrypoint.sh"]
+#COPY scripts/ /scripts/
+
+# See https://github.com/jupyter/docker-stacks/tree/main/images/docker-stacks-foundation
+#ENTRYPOINT ["tini", "-g", "--", "start.sh"]
+#CMD start-notebook.py
