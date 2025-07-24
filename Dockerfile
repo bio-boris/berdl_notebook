@@ -4,8 +4,7 @@ USER root
 
 # PYTHON
 COPY configs /configs
-RUN mamba env list
-RUN echo hello
+
 RUN mamba env update --file /configs/environment.yaml
 
 # SHELL
