@@ -3,7 +3,7 @@ USER root
 
 
 # PYTHON
-COPY configs /configs
+COPY configs/* /configs/
 
 RUN mamba env update --file /configs/environment.yaml
 
