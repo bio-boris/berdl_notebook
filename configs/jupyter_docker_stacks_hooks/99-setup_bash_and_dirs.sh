@@ -9,13 +9,18 @@ if [ -z "$NB_UID" ]; then
   exit 1
 fi
 
+if [ -z "$NB_GID" ]; then
+  echo "NB_GID environment variable is not set."
+  exit 1
+fi
+
 if [ ! -d "$HOMEDIRECTORY" ]; then
   echo "Directory $DIR does not exist."
   exit 1
 fi
 
 sudo chown "$NB_UID":"$NB_GID" "$HOMEDIRECTORY"
-echo "Changed ownership of $DIR to UID:GID $NB_UID"
+echo "Changed ownership of $HOMEDIRECTORY to UID:GID $NB_UID"
 
 
 cp -r --update=none /etc/skel/.??* "$HOMEDIRECTORY"
