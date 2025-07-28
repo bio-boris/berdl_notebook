@@ -3,7 +3,6 @@ USER root
 
 
 # PYTHON
-RUN echo hello
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
 
@@ -11,15 +10,7 @@ RUN mamba env update --file /configs/environment.yaml
 COPY ./configs/jupyter_docker_stacks_hooks/* /usr/local/bin/before-notebook.d/
 COPY ./configs/skel/.bash_aliases /etc/skel
 
-# SHELL
+# Extensions / Favorites Related
+ENV GLOBAL_SHARE=/global_share
+COPY ./extensions/jupyter_jupyter_ai_config.json /home/$NB_USER/.jupyter/jupyter_ai_config.json
 
-
-
-# MINIO
-
-
-#COPY scripts/ /scripts/
-
-# See https://github.com/jupyter/docker-stacks/tree/main/images/docker-stacks-foundation
-#ENTRYPOINT ["tini", "-g", "--", "start.sh"]
-#CMD start-notebook.py
