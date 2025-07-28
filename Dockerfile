@@ -3,13 +3,13 @@ USER root
 
 
 # PYTHON
-COPY configs/environment.yaml /configs
+RUN echo hello
+COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
 
 # JUPYTER STACKS SPECIFIC
-COPY configs/docker_stacks_hooks/* /usr/local/bin/before-notebook.d/
-COPY configs/skel/.bash_aliases /etc/skel
-
+COPY ./configs/jupyter_docker_stacks_hooks/* /usr/local/bin/before-notebook.d/
+COPY ./configs/skel/.bash_aliases /etc/skel
 
 # SHELL
 
