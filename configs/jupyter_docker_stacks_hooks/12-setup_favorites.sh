@@ -7,14 +7,14 @@ if [ ! -f "$FAVORITES_FILE" ]; then
   echo '{
     "favorites": [
       {
-        "root": "_",
-        "path": "'${GLOBAL_SHARE//\//_}'",
+        "root": "/",
+        "path": "'"${GLOBAL_SHARE_RELATIVE_TO_ROOT}"'",
         "contentType": "directory",
         "iconLabel": "ui-components:folder"
       },
       {
-        "root": "_",
-        "path": "/home/'"$NB_USER"'",
+        "root": "/home",
+        "path": "'"${NB_USER//\//_}"'",
         "contentType": "directory",
         "iconLabel": "ui-components:folder"
       }
