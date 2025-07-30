@@ -5,8 +5,6 @@ source /usr/local/bin/before-notebook.d/10-setup_env.sh
 if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
   cat > "$JUPYTER_FAVORITES_FILE" << EOF
 {
-
-
     "favorites": [
       {
         "root": "/",
