@@ -37,4 +37,3 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
 EOF
 fi
 chown "$NB_UID":"$NB_GID" "$JUPYTER_FAVORITES_FILE"
-echo "Changed ownership of $JUPYTER_FAVORITES_FILE to UID:GID $
