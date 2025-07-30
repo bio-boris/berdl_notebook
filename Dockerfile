@@ -12,5 +12,5 @@ COPY ./configs/skel/.bash_aliases /etc/skel
 
 # Extensions / Favorites Related
 ENV GLOBAL_SHARE_RELATIVE_TO_ROOT=global_share
-COPY ./extensions/jupyter_jupyter_ai_config.json /home/$NB_USER/.jupyter/jupyter_ai_config.json
+COPY ./configs/extensions/jupyter_jupyter_ai_config.json /home/$NB_USER/.jupyter/jupyter_ai_config.json
 
