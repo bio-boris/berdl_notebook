@@ -3,7 +3,7 @@
 source /usr/local/bin/before-notebook.d/10-setup_env.sh
 
 if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
-  SANITIZED_NB_USER_PATH="${NB_USER//\//_}"
+
 
   # A "here document" is used to safely write the multi-line JSON
   # string to the file, correctly expanding the shell variables.
@@ -23,14 +23,18 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
         "path": "${GLOBAL_SHARE_RELATIVE_TO_ROOT}",
         "contentType": "directory",
         "iconLabel": "ui-components:folder"
+        "name" : "Global Share"
       },
       {
         "root": "/home",
-        "path": "${SANITIZED_NB_USER_PATH}",
+        "path": "${NB_USER}",
         "contentType": "directory",
         "iconLabel": "ui-components:folder"
+        "name" : "$HOME"
       }
     ]
 }
 EOF
 fi
+chown "$NB_UID":"$NB_GID" "$JUPYTER_FAVORITES_FILE"
+echo "Changed ownership of $JUPYTER_FAVORITES_FILE to UID:GID $
