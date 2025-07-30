@@ -22,14 +22,14 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
         "root": "/",
         "path": "${GLOBAL_SHARE_RELATIVE_TO_ROOT}",
         "contentType": "directory",
-        "iconLabel": "ui-components:folder"
+        "iconLabel": "ui-components:folder",
         "name" : "Global Share"
       },
       {
         "root": "/home",
         "path": "${NB_USER}",
         "contentType": "directory",
-        "iconLabel": "ui-components:folder"
+        "iconLabel": "ui-components:folder",
         "name" : "$HOME"
       }
     ]
