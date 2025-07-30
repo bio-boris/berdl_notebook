@@ -36,4 +36,4 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
 }
 EOF
 fi
-chown "$NB_UID":"$NB_GID" "$JUPYTER_FAVORITES_FILE"
+chmod "$NB_UID":"$NB_GID" "$JUPYTER_FAVORITES_FILE"
