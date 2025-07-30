@@ -14,8 +14,8 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
         "name" : "Global Share"
       },
       {
-        "root": "/home",
-        "path": "${NB_USER}",
+        "root": "/",
+        "path": "home/${NB_USER}",
         "contentType": "directory",
         "iconLabel": "ui-components:folder",
         "name" : "${NB_USER}"
