@@ -1,6 +1,6 @@
 #!/bin/bash
 # Configure JupyterLab favorites for the user.
-source .validate_env.sh
+source .10-setup_env.sh
 
 if [ ! -f "$FAVORITES_FILE" ]; then
   SANITIZED_NB_USER_PATH="${NB_USER//\//_}"
