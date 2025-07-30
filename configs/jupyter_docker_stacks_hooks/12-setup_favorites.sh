@@ -3,19 +3,9 @@
 source /usr/local/bin/before-notebook.d/10-setup_env.sh
 
 if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
-
-
-  # A "here document" is used to safely write the multi-line JSON
-  # string to the file, correctly expanding the shell variables.
   cat > "$JUPYTER_FAVORITES_FILE" << EOF
 {
-    // Favorites
-    // @jlab-enhanced/favorites:favorites
-    // Favorites settings.
-    // **********************************
 
-    // Favorites
-    // The list of favorites.
 
     "favorites": [
       {
@@ -35,5 +25,5 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
     ]
 }
 EOF
-chmod "$NB_UID":"$NB_GID" "$JUPYTER_FAVORITES_FILE"
+chown "$NB_USER":"$NB_GID" "$JUPYTER_FAVORITES_FILE"
 fi
