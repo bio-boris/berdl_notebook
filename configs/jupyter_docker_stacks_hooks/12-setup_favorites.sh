@@ -18,7 +18,7 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
         "path": "${NB_USER}",
         "contentType": "directory",
         "iconLabel": "ui-components:folder",
-        "name" : "$HOME"
+        "name" : "${NB_USER}"
       }
     ]
 }
