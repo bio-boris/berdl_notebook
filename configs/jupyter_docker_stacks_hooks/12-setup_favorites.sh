@@ -9,20 +9,28 @@ if [ ! -f "$JUPYTER_FAVORITES_FILE" ]; then
   # string to the file, correctly expanding the shell variables.
   cat > "$JUPYTER_FAVORITES_FILE" << EOF
 {
-  "favorites": [
-    {
-      "root": "/",
-      "path": "${GLOBAL_SHARE_RELATIVE_TO_ROOT}",
-      "contentType": "directory",
-      "iconLabel": "ui-components:folder"
-    },
-    {
-      "root": "/home",
-      "path": "${SANITIZED_NB_USER_PATH}",
-      "contentType": "directory",
-      "iconLabel": "ui-components:folder"
-    }
-  ]
+    // Favorites
+    // @jlab-enhanced/favorites:favorites
+    // Favorites settings.
+    // **********************************
+
+    // Favorites
+    // The list of favorites.
+
+    "favorites": [
+      {
+        "root": "/",
+        "path": "${GLOBAL_SHARE_RELATIVE_TO_ROOT}",
+        "contentType": "directory",
+        "iconLabel": "ui-components:folder"
+      },
+      {
+        "root": "/home",
+        "path": "${SANITIZED_NB_USER_PATH}",
+        "contentType": "directory",
+        "iconLabel": "ui-components:folder"
+      }
+    ]
 }
 EOF
 fi
