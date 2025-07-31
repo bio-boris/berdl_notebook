@@ -1,4 +1,4 @@
-FROM quay.io/jupyter/pyspark-notebook:spark-4.0.0
+FROM quay.io/jupyter/pyspark-notebook:spark-3.5.6
 USER root
 
 
