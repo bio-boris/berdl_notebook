@@ -5,6 +5,8 @@ dependencies:
   - python=3.12
   - minio=7.2.16
   - boto3=1.39.12
+  - pandas
+  - pip
 
   - pip:
     - jupyter-ai-cborg @ git+https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git@v0.1.0
