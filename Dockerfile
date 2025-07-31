@@ -14,7 +14,7 @@ COPY ./configs/skel/.bash_aliases /etc/skel
 
 # Extensions / Favorites Related
 COPY ./configs/extensions/jupyter_jupyter_ai_config.json /home/$NB_USER/.jupyter/jupyter_ai_config.json
-COPY ./configs/extensions/favorites.json.json /home/$NB_USER/.jupyter/lab/user-settings/@jlab-enhanced/favorites/favorites.jupyterlab-settings
+COPY ./configs/extensions/favorites.json /home/$NB_USER/.jupyter/lab/user-settings/@jlab-enhanced/favorites/favorites.jupyterlab-settings
 
 # BASHRC
 COPY ./configs/skel* /home/$NB_USER
