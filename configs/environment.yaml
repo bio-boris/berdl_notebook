@@ -8,4 +8,4 @@ dependencies:
   - pip:
     - jupyter-ai-cborg @ git+https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git@v0.1.0
     - jupyterlab_favorites==3.2.2
-    - cdm-task-service-client @ git+https://github.com/kbase/cdm-task-service-client.git@0.1.0
+    #- cdm-task-service-client @ git+https://github.com/kbase/cdm-task-service-client.git@0.1.0

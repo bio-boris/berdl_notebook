@@ -3,9 +3,9 @@ USER root
 
 
 # PYTHON
-# Upgrade mamba's python environment to 3.12 when using non 4.0 version of this image
-RUN mamba update -n base -c conda-forge python=3.12
-
+# Upgrade mamba's python environment to 3.12 when using non 4.0 version of this image.
+# This line can be removed when the pyspark-notebook image is updated to 4.0
+RUN mamba update -n base -c conda-forge
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
 
