@@ -1,12 +1,12 @@
 import os
 # NOTICE FOR BERDL_USERS: This will get overwritten on container restart. Do not modify this file #
-
-c.ServerApp.base_url = os.environ.get('NB_PREFIX', '/')
-c.ServerApp.log_level = os.environ.get('LOG_LEVEL', 'DEBUG').upper()
-c.ServerApp.ip = '0.0.0.0'
-c.ServerApp.port = 8888
-c.ServerApp.open_browser = False
-c.ServerApp.allow_root = False
+#
+# c.ServerApp.base_url = os.environ.get('NB_PREFIX', '/')
+# c.ServerApp.log_level = os.environ.get('LOG_LEVEL', 'DEBUG').upper()
+# c.ServerApp.ip = '0.0.0.0'
+# c.ServerApp.port = 8888
+# c.ServerApp.open_browser = False
+# c.ServerApp.allow_root = False
 #c.ServerApp.token = ''
 #c.ServerApp.password = ''
 #c.ServerApp.collaborative = True

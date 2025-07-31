@@ -1,0 +1,18 @@
+{
+    "favorites": [
+        {
+            "root": "/",
+            "path": "global_share",
+            "contentType": "directory",
+            "iconLabel": "ui-components:folder",
+            "name": "kbase_group_shared"
+        },
+        {
+            "root": "/",
+            "path": "home/${NB_USER}",
+            "contentType": "directory",
+            "iconLabel": "ui-components:folder",
+            "name": "$HOME"
+        }
+    ]
+}
