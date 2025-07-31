@@ -3,6 +3,7 @@ USER root
 
 
 # PYTHON
+RUN conda update -n base -c conda-forge conda
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
 
