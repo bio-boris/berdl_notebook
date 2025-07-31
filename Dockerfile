@@ -4,8 +4,7 @@ USER root
 
 # PYTHON
 RUN conda update -n base -c conda-forge conda
-# Update to 3.12
-
+RUN rm /opt/conda/conda-meta/pinned
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
 
