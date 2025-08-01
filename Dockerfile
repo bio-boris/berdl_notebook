@@ -7,7 +7,7 @@ FROM ghcr.io/bio-boris/berdl_notebook-base:latest
 RUN rm -rf /home/jovyan/
 
 USER root
-COPY ./configs/extensions /configs/extensions
+COPY ./configs/extensions/ /configs/extensions
 COPY ./configs/skel/* /etc/skel
 COPY ./scripts/entrypoint.sh /entrypoint.sh
 COPY ./configs/jupyter_docker_stacks_hooks /usr/local/bin/before-notebook.d
