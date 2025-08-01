@@ -3,7 +3,9 @@ FROM ghcr.io/bio-boris/berdl_notebook-base:latest
 # and the base image is built from the pyspark-notebook image
 # We can upgrade the base image to get the latest pyspark-notebook updates when we want spark 4.0
 
+#TODO: MOVE INTO BASE IMAGE
 # Remove /home/jovyan/
+RUN apt-get update && apt-get install -y envsubst
 RUN rm -rf /home/jovyan/
 
 USER root
