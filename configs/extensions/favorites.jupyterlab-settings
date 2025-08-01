@@ -5,14 +5,14 @@
             "path": "global_share",
             "contentType": "directory",
             "iconLabel": "ui-components:folder",
-            "name": "kbase_group_shared"
+            "name": "Global Share"
         },
         {
             "root": "/",
             "path": "home/${NB_USER}",
             "contentType": "directory",
             "iconLabel": "ui-components:folder",
-            "name": "$HOME"
+            "name": "/home/${NB_USER}"
         }
     ]
 }
