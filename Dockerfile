@@ -7,6 +7,7 @@ FROM ghcr.io/bio-boris/berdl_notebook-base:latest
 RUN rm -rf /home/jovyan/
 
 USER root
+COPY ./configs/extensions /configs/extensions
 COPY ./configs/skel/.bash_aliases /etc/skel
 COPY ./scripts/entrypoint.sh /entrypoint.sh
 WORKDIR /home
