@@ -5,7 +5,8 @@ FROM ghcr.io/bio-boris/berdl_notebook-base:latest
 
 #TODO: MOVE INTO BASE IMAGE
 # Remove /home/jovyan/
-RUN apt-get update && apt-get install -y envsubst
+RUN apt-get update
+RUN apt-get install -y gettext
 RUN rm -rf /home/jovyan/
 
 USER root
