@@ -7,4 +7,6 @@ RUN rm /opt/conda/conda-meta/pinned
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
 
-
+RUN apt-get update
+RUN apt-get install -y gettext vim
+RUN rm -rf /home/jovyan/
