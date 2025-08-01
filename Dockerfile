@@ -1,5 +1,5 @@
-FROM ghcr.io/bioboris/jupyterhub-berdl:base
-
+FROM ghcr.io/bio-boris/berdl_notebook-base:latest
+# Python dependencies are updated in the base image
 
 USER root
 COPY ./configs/skel/.bash_aliases /etc/skel
