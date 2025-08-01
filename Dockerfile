@@ -10,5 +10,6 @@ USER root
 COPY ./configs/extensions /configs/extensions
 COPY ./configs/skel/.bash_aliases /etc/skel
 COPY ./scripts/entrypoint.sh /entrypoint.sh
+COPY ./configs/jupyter_docker_stacks_hooks /usr/local/bin/before-notebook.d
 WORKDIR /home
 ENTRYPOINT ["/entrypoint.sh"]
