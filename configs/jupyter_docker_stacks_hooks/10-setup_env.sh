@@ -47,4 +47,4 @@ fi
 
 # Recursively set ownership for the entire home directory to the notebook user.
 # This is a critical final step to ensure the user has the correct permissions.
-chown -R "$NB_USER":"$NB_USER" "$HOME_DIRECTORY"
+chown -R "$NB_USER" "$HOME_DIRECTORY"

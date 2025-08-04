@@ -13,6 +13,10 @@
 * Copies the necessary files and configurations
 * 
 
+# Contributing
+See the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
+
+
 
 # Welcome to Your Development Environment
 
