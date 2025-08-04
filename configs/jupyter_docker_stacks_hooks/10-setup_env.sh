@@ -13,7 +13,7 @@ HOME_DIRECTORY="/home/$NB_USER"
 # --- Shell Configuration ---
 
 # Always copy/overwrite the default .bash_profile to ensure a consistent environment.
-install /configs/skel/.bash_profile "$HOME_DIRECTORY/.bash_profile"
+install /etc/skel/.bash_profile "$HOME_DIRECTORY/.bash_profile"
 
 # Conditionally create .custom_profile for user customizations if it doesn't exist.
 # This file is sourced by .bash_profile and preserves user changes across sessions.
