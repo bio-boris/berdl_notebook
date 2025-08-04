@@ -1,12 +1,11 @@
 FROM quay.io/jupyter/pyspark-notebook:spark-3.5.3
 USER root
 
-# PYTHON
+RUN apt-get update
+RUN apt-get install -y gettext vim
+
 RUN conda update -n base -c conda-forge conda
 RUN rm /opt/conda/conda-meta/pinned
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
-
-RUN apt-get update
-RUN apt-get install -y gettext vim
 RUN rm -rf /home/jovyan/
