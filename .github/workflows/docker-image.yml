@@ -1,4 +1,4 @@
-name: Docker
+name: Build Jupyterhub Notebook Base Image
 
 on:
   workflow_dispatch:
