@@ -46,6 +46,8 @@ fi
 # --- IPython Startup Scripts ---
 # Always install the python startup scripts from the /configs/ipython_startup directory.
 # This overwrites any user modifications to ensure a consistent, standard environment.
+# If any of these scripts don't work, the whole import process will fail silently.
+# We could add a step to check each of these scripts if we want as well
 IPYTHON_STARTUP_DIR="$HOME_DIRECTORY/.ipython/profile_default/startup"
 SOURCE_SCRIPTS_DIR="/configs/ipython_startup"
 mkdir -p "$IPYTHON_STARTUP_DIR"
