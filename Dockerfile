@@ -12,6 +12,6 @@ COPY ./configs/ipython_startup  /.ipython/profile_default/startup/
 WORKDIR /home
 
 #TODO MOVE TO ENV
-RUN pip install -e https://github.com/kbase/cdm-kube-spark-manager-client
+RUN pip install -e git+https://github.com/kbase/cdm-kube-spark-manager-client
 
 ENTRYPOINT ["/entrypoint.sh"]
