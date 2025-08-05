@@ -1,4 +1,4 @@
-name: Build Jupyterhub Notebook Child Image
+name: Build Jupyterhub Notebook Base Image
 
 on:
   workflow_dispatch:
