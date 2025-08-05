@@ -1,6 +1,9 @@
-"""
-This file handles the importation of essential modules and functions pre-configured for the notebook.
 
+"""
+# ATTENTION USERS: DO NOT MODIFY THIS FILE, as it will be overwritten
+
+
+This file handles the importation of essential modules and functions pre-configured for the notebook.
 With the PYTHONPATH configured to /src by the Dockerfile, we can directly import modules from the src directory.
 """
 

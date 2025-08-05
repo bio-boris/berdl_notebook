@@ -43,8 +43,24 @@ if [ ! -f "$FAVORITES_FILE" ]; then
     envsubst < /configs/extensions/favorites.jupyterlab-settings > "$FAVORITES_FILE"
 fi
 
+# --- IPython Startup Scripts ---
+# Always install the python startup scripts from the /configs/ipython_startup directory.
+# This overwrites any user modifications to ensure a consistent, standard environment.
+IPYTHON_STARTUP_DIR="$HOME_DIRECTORY/.ipython/profile_default/startup"
+SOURCE_SCRIPTS_DIR="/configs/ipython_startup"
+
+mkdir -p "$IPYTHON_STARTUP_DIR"
+
+# Check if the source directory contains any .py files before attempting to copy.
+if ls "$SOURCE_SCRIPTS_DIR"/*.py >/dev/null 2>&1; then
+    # Use 'install' to copy all scripts and set permissions.
+    # This will overwrite any existing files in the destination.
+    install "$SOURCE_SCRIPTS_DIR"/*.py "$IPYTHON_STARTUP_DIR"/
+fi
+
 # --- Finalization ---
 
 # Recursively set ownership for the entire home directory to the notebook user.
 # This is a critical final step to ensure the user has the correct permissions.
+# TODO: We may want to consider using a more specific directory after each step if this is too broad and too slow
 chown -R "$NB_USER":users "$HOME_DIRECTORY"

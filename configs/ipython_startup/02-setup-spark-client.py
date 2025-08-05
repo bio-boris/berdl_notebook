@@ -7,6 +7,7 @@ from pyspark.sql import DataFrame, SparkSession
 SPARK_DEFAULT_POOL = "default"
 SPARK_POOLS = [SPARK_DEFAULT_POOL, "highPriority"]
 
+## ATTENTION USERS: DO NOT MODIFY THIS FILE, as it will be overwritten
 
 
 def get_spark_session(
