@@ -48,15 +48,9 @@ fi
 # This overwrites any user modifications to ensure a consistent, standard environment.
 IPYTHON_STARTUP_DIR="$HOME_DIRECTORY/.ipython/profile_default/startup"
 SOURCE_SCRIPTS_DIR="/configs/ipython_startup"
-
 mkdir -p "$IPYTHON_STARTUP_DIR"
+install "$SOURCE_SCRIPTS_DIR"/*.py "$IPYTHON_STARTUP_DIR"/
 
-# Check if the source directory contains any .py files before attempting to copy.
-if ls "$SOURCE_SCRIPTS_DIR"/*.py >/dev/null 2>&1; then
-    # Use 'install' to copy all scripts and set permissions.
-    # This will overwrite any existing files in the destination.
-    install "$SOURCE_SCRIPTS_DIR"/*.py "$IPYTHON_STARTUP_DIR"/
-fi
 
 # --- Finalization ---
 

@@ -1,5 +1,7 @@
 # BERDL Notebook
 
+
+
 * Set up the user's environment
 * Installs custom dependencies
   
@@ -11,7 +13,19 @@
 # Dockerfile build
 * Build the Docker image using the base image and the notebook image
 * Copies the necessary files and configurations
-* 
+
+
+# Required ENV Vars
+
+The following env vars must be provided by the jupyterhub
+* KBASE_ORIGIN
+* SPARK_JOB_LOG_DIR_CATEGORY
+* CDM_TASK_SERVICE_URL
+* SPARK_CLUSTER_MANAGER_API_URL
+* KBASE_AUTH_TOKEN
+* SPARK_MASTER_URL
+* SPARK_DRIVER_HOST as BERDL_POD_IP
+ 
 
 # Contributing
 See the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
