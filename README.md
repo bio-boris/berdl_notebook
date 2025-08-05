@@ -32,7 +32,10 @@ See the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contrib
 
 
 
-# Welcome to Your Development Environment
+# Welcome to Your BERDL Environment
+* nginx.ingress.kubernetes.io/proxy-body-size is set to 64m, so you cannot upload files bigger than that directly
+* 
+
 
 This environment has been automatically configured to provide a consistent and powerful experience. This document explains how the setup works and, most importantly, how you can customize it.
 

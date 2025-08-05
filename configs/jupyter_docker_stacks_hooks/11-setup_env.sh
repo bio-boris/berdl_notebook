@@ -48,6 +48,7 @@ fi
 # This overwrites any user modifications to ensure a consistent, standard environment.
 # If any of these scripts don't work, the whole import process will fail silently.
 # We could add a step to check each of these scripts if we want as well
+# [IPKernelApp] WARNING | Unknown error in handling startup files:
 IPYTHON_STARTUP_DIR="$HOME_DIRECTORY/.ipython/profile_default/startup"
 SOURCE_SCRIPTS_DIR="/configs/ipython_startup"
 mkdir -p "$IPYTHON_STARTUP_DIR"
@@ -60,3 +61,5 @@ install "$SOURCE_SCRIPTS_DIR"/*.py "$IPYTHON_STARTUP_DIR"/
 # This is a critical final step to ensure the user has the correct permissions.
 # TODO: We may want to consider using a more specific directory after each step if this is too broad and too slow
 chown -R "$NB_USER":users "$HOME_DIRECTORY"
+
+# DELETE JOVYAN USER

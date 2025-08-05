@@ -3,6 +3,8 @@ from datetime import datetime
 from pyspark import SparkConf
 from pyspark.sql import DataFrame, SparkSession
 
+# Requires install of delta-spark package and hadoop
+
 # Fair scheduler configuration TODO PUT IN A FILE or RETURN FROM API
 SPARK_DEFAULT_POOL = "default"
 SPARK_POOLS = [SPARK_DEFAULT_POOL, "highPriority"]
@@ -72,6 +74,33 @@ def get_spark_session(
 
     # Create and configure Spark session
     spark_conf = SparkConf().setAll(list(config.items()))
+
+    def add_delta_configs(
+            conf: SparkConf,
+            delta_package: str = "io.delta:delta-spark_2.12:3.2.0",
+            autoinstall: bool = False,
+    ) -> SparkConf:
+        """
+        Mutates a SparkConf object by adding configurations required for Delta Lake.
+
+        Args:
+            conf: The SparkConf object to modify.
+            delta_package: The Maven coordinates for the Delta Lake package.
+
+        Returns:
+            The modified SparkConf object (to allow for chaining).
+        """
+        print("Mutating SparkConf object with Delta Lake configurations...")
+        conf.set("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
+        conf.set("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
+        if autoinstall:
+            # Otherwise use the jars in /usr/local/spark/jars
+            conf.set("spark.jars.packages", delta_package)
+
+
+
+        return conf
+
     spark = SparkSession.builder.config(conf=spark_conf).getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
 

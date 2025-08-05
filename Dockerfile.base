@@ -1,3 +1,12 @@
+FROM gradle:9.0.0-jdk24-ubi-minimal AS builder
+WORKDIR /build
+# Copy the Gradle build file and download the dependencies into the 'libs' folder
+COPY build.gradle.kts .
+RUN gradle copyLibs --no-daemon
+
+
+
+
 FROM quay.io/jupyter/pyspark-notebook:spark-3.5.3
 USER root
 
@@ -9,3 +18,7 @@ RUN rm /opt/conda/conda-meta/pinned
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
 RUN rm -rf /home/jovyan/
+
+
+# Copy the JARs from the builder stage into your the spark jars directory
+COPY --from=builder /build/libs/ /usr/local/spark/jars/
