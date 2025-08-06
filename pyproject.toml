@@ -1,0 +1,22 @@
+[project]
+name = "jupyterhubsingleuser"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "boto3>=1.40.3",
+    "cdm-spark-manager-client",
+    "cdm-task-service-client",
+    "delta-spark===3.3.2",
+    "jupyter-ai-cborg",
+    "jupyterlab-favorites==3.2.2",
+    "minio>=7.2.16",
+    "pandas>=2.3.1",
+    "pip>=25.2",
+]
+
+[tool.uv.sources]
+jupyter-ai-cborg = { git = "https://github.com/kbaseincubator/cdm-jupyter-ai-cborg.git", rev = "v0.1.0" }
+cdm-task-service-client = { git = "https://github.com/kbase/cdm-task-service-client.git", rev = "0.1.0" }
+cdm-spark-manager-client = { git = "https://github.com/kbase/cdm-kube-spark-manager-client.git", rev = "0.0.1" }

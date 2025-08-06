@@ -17,8 +17,13 @@ RUN conda update -n base -c conda-forge conda
 RUN rm /opt/conda/conda-meta/pinned
 COPY ./configs/environment.yaml /configs/environment.yaml
 RUN mamba env update --file /configs/environment.yaml
-RUN rm -rf /home/jovyan/
 
+WORKDIR /deps
+COPY pyproject.toml uv.lock .python-version /deps
+RUN uv sync --locked --inexact --no-dev
+
+
+RUN rm -rf /home/jovyan/
 
 # Copy the JARs from the builder stage into your the spark jars directory
 COPY --from=builder /build/libs/ /usr/local/spark/jars/
