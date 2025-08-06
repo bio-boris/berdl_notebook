@@ -7,7 +7,7 @@ plugins {
 val hadoopAwsVersion = "3.3.4"
 val deltaSparkVersion = "3.2.0"
 val scalaVersion = "2.12"
-val postgresVersion = "42.7.3" // Note: 42.2.23 is older, 42.7.3 is a stable recent version
+val postgresVersion = "42.7.3"
 val sparkRedisVersion = "3.1.0"
 val sparkXmlVersion = "0.18.0"
 
