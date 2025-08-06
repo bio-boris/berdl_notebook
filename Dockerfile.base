@@ -10,13 +10,19 @@ RUN gradle copyLibs --no-daemon
 FROM quay.io/jupyter/pyspark-notebook:spark-3.5.3
 USER root
 
-RUN apt-get update
-RUN apt-get install -y gettext vim
+# Recommended
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gettext \
+    vim \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN conda update -n base -c conda-forge conda
-RUN rm /opt/conda/conda-meta/pinned
-COPY ./configs/environment.yaml /configs/environment.yaml
-RUN mamba env update --file /configs/environment.yaml
+# Recommended
+RUN conda update -n base -c conda-forge conda && \
+    rm /opt/conda/conda-meta/pinned
+
+COPY ./configs/environment.yaml /tmp/environment.yaml
+RUN mamba env update --file /tmp/environment.yaml && \
+    conda clean --all -f -y
 
 WORKDIR /deps
 COPY pyproject.toml uv.lock .python-version /deps
