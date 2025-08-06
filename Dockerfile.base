@@ -1,35 +1,27 @@
 FROM gradle:9.0.0-jdk24-ubi-minimal AS builder
+# Setup Java dependencies
 WORKDIR /build
-# Copy the Gradle build file and download the dependencies into the 'libs' folder
 COPY build.gradle.kts .
 RUN gradle copyLibs --no-daemon
 
-
-
-
 FROM quay.io/jupyter/pyspark-notebook:spark-3.5.3
 USER root
+COPY --from=builder /build/libs/ /usr/local/spark/jars/
 
-# Recommended
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gettext \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-# Recommended
+# Update python and install dependencies
+WORKDIR /deps
 RUN conda update -n base -c conda-forge conda && \
     rm /opt/conda/conda-meta/pinned
-
 COPY ./configs/environment.yaml /tmp/environment.yaml
 RUN mamba env update --file /tmp/environment.yaml && \
     conda clean --all -f -y
-
-WORKDIR /deps
 COPY pyproject.toml uv.lock .python-version /deps
+ENV UV_PROJECT_ENVIRONMENT=/opt/conda
 RUN uv sync --locked --inexact --no-dev
 
-
 RUN rm -rf /home/jovyan/
-
-# Copy the JARs from the builder stage into your the spark jars directory
-COPY --from=builder /build/libs/ /usr/local/spark/jars/
