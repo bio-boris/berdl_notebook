@@ -10,11 +10,13 @@ dependencies = [
     "cdm-task-service-client",
     "cdm-tree-browser",
     "delta-spark==4.0.0",
+    "itables==2.4.4",
     "jupyter-ai-cborg",
     "jupyterlab-favorites",
     "minio==7.2.16",
     "pandas==2.3.1",
     "pip==25.2",
+    "sidecar==0.7.0",
 ]
 
 [tool.uv.sources]
