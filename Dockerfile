@@ -1,4 +1,4 @@
-FROM ghcr.io/bio-boris/berdl_notebook-base:0.0.9
+FROM ghcr.io/bio-boris/berdl_notebook-base:0.0.10
 # Python and java dependencies are updated in the base image
 
 
