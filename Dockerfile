@@ -11,7 +11,7 @@ COPY ./configs/ipython_startup  /configs/ipython_startup
 WORKDIR /home
 
 RUN uv add itables
-RUV uv add sidecar
+RUN uv add sidecar
 
 ENTRYPOINT ["/entrypoint.sh"]
 
