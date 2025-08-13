@@ -27,7 +27,7 @@ dependencies {
     // Spark-Redis connector
     // runtimeOnly("com.redislabs:spark-redis_${scalaVersion}:$sparkRedisVersion") deprecated
 
-    // Spark-XML connector
+    // Spark-XML connector (no longer needed in 4.0.0)
     runtimeOnly("com.databricks:spark-xml_${scalaVersion}:$sparkXmlVersion")
 }
 
