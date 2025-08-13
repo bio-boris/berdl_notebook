@@ -31,6 +31,7 @@ COPY ./configs/environment.yaml /tmp/environment.yaml
 RUN mamba env update --file /tmp/environment.yaml && \
     conda clean --all -f -y
 COPY pyproject.toml uv.lock .python-version /deps
+
 ENV UV_PROJECT_ENVIRONMENT=/opt/conda
 RUN uv sync --locked --inexact --no-dev
 
