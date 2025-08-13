@@ -4,12 +4,12 @@ WORKDIR /build
 COPY build.gradle.kts .
 RUN gradle copyLibs --no-daemon
 
-FROM quay.io/jupyter/pyspark-notebook:spark-4.0.0
+FROM quay.io/jupyter/pyspark-notebook:spark-3.5.3
 USER root
 COPY --from=builder /build/libs/ /usr/local/spark/jars/
 
 
-ENV MC_VER=2025-07-21T05-28-08Z
+ENV MC_VER=2025-05-21T01-59-54Z
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gettext \
@@ -22,9 +22,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 
+
 # Update python and install dependencies
 WORKDIR /deps
+RUN conda update -n base -c conda-forge conda && \
+    rm /opt/conda/conda-meta/pinned
+COPY ./configs/environment.yaml /tmp/environment.yaml
+RUN mamba env update --file /tmp/environment.yaml && \
+    conda clean --all -f -y
 COPY pyproject.toml uv.lock .python-version /deps
 ENV UV_PROJECT_ENVIRONMENT=/opt/conda
 RUN uv sync --locked --inexact --no-dev
+
 RUN rm -rf /home/jovyan/

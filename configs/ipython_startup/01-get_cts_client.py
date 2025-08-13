@@ -1,7 +1,6 @@
 """
 Small helper to create a CDM task service client in a Jupyter notebook.
 # ATTENTION USERS: DO NOT MODIFY THIS FILE, as it will be overwritten
-
 See:
 https://github.com/kbase/cdm-task-service-client/
 https://github.com/kbase/cdm-task-service/

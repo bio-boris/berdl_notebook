@@ -3,6 +3,8 @@ Spark utilities for CDM JupyterHub.
 
 This module provides utilities for creating and configuring Spark sessions
 with support for Delta Lake, MinIO S3 storage, and fair scheduling.
+
+# This file must be loaded AFTER the 02-get_minio_client.py file
 """
 
 import csv
@@ -14,43 +16,8 @@ from typing import Dict, List, Optional
 from pyspark.conf import SparkConf
 from pyspark.sql import DataFrame, SparkSession
 
-#from minio_governance.client import DataGovernanceClient
+
 import os
-
-from minio import Minio
-
-
-"""
-This module contains utility functions to interact with Minio.
-"""
-
-
-
-def get_minio_client(
-    minio_url: str | None = None,
-    access_key: str | None = None,
-    secret_key: str | None = None,
-    secure: bool = False,
-) -> Minio:
-    """
-    Helper function to get the Minio client.
-
-    :param minio_url: URL for the Minio server (environment variable used if not provided)
-    :param access_key: Access key for Minio (environment variable used if not provided)
-    :param secret_key: Secret key for Minio (environment variable used if not provided)
-    :param secure: Whether to use HTTPS (optional, default is False)
-    :return: A Minio client object
-    """
-    minio_url = minio_url or os.environ['MINIO_URL'].replace("http://", "")
-    access_key = access_key or os.environ['MINIO_ACCESS_KEY']
-    secret_key = secret_key or os.environ['MINIO_SECRET_KEY']
-
-    return Minio(
-        minio_url,
-        access_key=access_key,
-        secret_key=secret_key,
-        secure=secure
-    )
 
 
 
@@ -83,17 +50,13 @@ def _validate_env_vars(required_vars: List[str], context: str) -> None:
         )
 
 
-
-
-
-# --- CORRECTED CODE ---
-def _get_s3_conf() -> Dict[str, str]:
+def _get_s3_conf(username) -> Dict[str, str]:
     """
     Get S3 configuration for MinIO.
     """
-    warehouse_dir = "s3a://cdm-lake/users-sql-warehouse/bsadkhin/"
+    warehouse_dir = f"s3a://cdm-lake/users-sql-warehouse/{username}/"
 
-    return {
+    config = {
         "spark.hadoop.fs.s3a.endpoint": os.environ.get("MINIO_ENDPOINT") or os.environ.get("MINIO_URL"),
         "spark.hadoop.fs.s3a.access.key": os.environ.get("MINIO_ACCESS_KEY"),
         "spark.hadoop.fs.s3a.secret.key": os.environ.get("MINIO_SECRET_KEY"),
@@ -102,23 +65,16 @@ def _get_s3_conf() -> Dict[str, str]:
         "spark.sql.warehouse.dir": warehouse_dir,
     }
 
-
-def _get_delta_lake_conf() -> Dict[str, str]:
-    """
-    Get Delta Lake specific Spark configuration.
-
-    Returns:
-        Dictionary of Delta Lake Spark configuration properties
-
-    Reference:
-        https://blog.min.io/delta-lake-minio-multi-cloud/
-    """
-    return {
+    config.update({
         "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension",
         "spark.sql.catalog.spark_catalog": "org.apache.spark.sql.delta.catalog.DeltaCatalog",
         "spark.databricks.delta.retentionDurationCheck.enabled": "false",
-        "spark.sql.catalogImplementation": "hive",
-    }
+    })
+    return config
+
+
+
+
 
 
 def _configure_dynamic_allocation(config: Dict[str, str]) -> None:
@@ -173,15 +129,6 @@ def _configure_spark_master(config: Dict[str, str]) -> None:
     config["spark.master"] = os.environ["SPARK_MASTER_URL"]
 
 
-def _configure_delta_lake(config: Dict[str, str]) -> None:
-    """Configure Delta Lake support including JARs and settings."""
-    #TODO WHY DO WE NEED THIS
-    # _validate_env_vars(
-    #     ["HADOOP_AWS_VER", "DELTA_SPARK_VER", "SCALA_VER"], "Delta Lake setup"
-    # )
-
-    # Add Delta Lake configuration
-    config.update(_get_delta_lake_conf())
 
 
 
@@ -230,6 +177,7 @@ def get_spark_session(
     local: bool = False,
     delta_lake: bool = True,
     scheduler_pool: str = SPARK_DEFAULT_POOL,
+    use_hive: bool = True,
 ) -> SparkSession:
     """
     Create and configure a Spark session with CDM-specific settings.
@@ -278,10 +226,16 @@ def get_spark_session(
     _configure_driver_host(config)
     _configure_spark_master(config)
 
-    # Configure Delta Lake if enabled
+    # Configure Delta Lake and S3 if enabled
     if delta_lake:
-        config.update(_get_s3_conf())
-        _configure_delta_lake(config)
+        s3_delta_lake_config = _get_s3_conf(username=os.environ['SPARK_JOB_LOG_DIR_CATEGORY'])
+        config.update(s3_delta_lake_config)
+
+    if use_hive:
+
+        config["hive.metastore.uris"] = os.environ['BERDL_HIVE_METASTORE_URI']
+
+        #config["spark.sql.warehouse.dir"]
 
     # Create and configure Spark session
     spark_conf = SparkConf().setAll(list(config.items()))

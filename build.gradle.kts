@@ -4,11 +4,10 @@ plugins {
 
 // Define all versions as variables for easy updates
 // NOTE: ensure Delta Spark jar version matches python pip delta-spark version specified in the Pipfile
-val hadoopAwsVersion = "3.3.4"
-val deltaSparkVersion = "3.2.0"
-val scalaVersion = "2.12"
-val postgresVersion = "42.7.3"
-val sparkRedisVersion = "3.1.0"
+val hadoopAwsVersion = "3.4.1"
+val deltaSparkVersion = "4.0.0"
+val scalaVersion = "2.13"
+val postgresVersion = "42.7.7"
 val sparkXmlVersion = "0.18.0"
 
 repositories {
@@ -16,9 +15,6 @@ repositories {
 }
 
 dependencies {
-    // For this use case (gathering JARs for the Spark runtime),
-    // runtimeOnly is the correct configuration for all dependencies.
-
     // AWS support for Hadoop S3A filesystem
     runtimeOnly("org.apache.hadoop:hadoop-aws:$hadoopAwsVersion")
 
@@ -29,7 +25,7 @@ dependencies {
     runtimeOnly("org.postgresql:postgresql:$postgresVersion")
 
     // Spark-Redis connector
-    runtimeOnly("com.redislabs:spark-redis_${scalaVersion}:$sparkRedisVersion")
+    // runtimeOnly("com.redislabs:spark-redis_${scalaVersion}:$sparkRedisVersion") deprecated
 
     // Spark-XML connector
     runtimeOnly("com.databricks:spark-xml_${scalaVersion}:$sparkXmlVersion")
