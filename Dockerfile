@@ -1,7 +1,6 @@
 FROM ghcr.io/bio-boris/berdl_notebook-base:0.0.8
 # Python and java dependencies are updated in the base image
-# and the base image is built from the pyspark-notebook image
-# We can upgrade the base image to get the latest pyspark-notebook updates when we want spark 4.0
+
 
 COPY ./configs/extensions/ /configs/extensions/
 COPY ./configs/skel/* /etc/skel
