@@ -2,7 +2,7 @@
     "favorites": [
         {
             "root": "/",
-            "path": "global_share",
+            "path": "home/${NB_USER}/global_share",
             "contentType": "directory",
             "iconLabel": "ui-components:folder",
             "name": "Global Share"

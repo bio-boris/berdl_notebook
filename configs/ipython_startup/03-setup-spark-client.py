@@ -8,8 +8,6 @@ with support for Delta Lake, MinIO S3 storage, and fair scheduling.
 """
 
 import csv
-import os
-import socket
 from datetime import datetime
 from typing import Dict, List, Optional
 
@@ -240,7 +238,7 @@ def get_spark_session(
     # Create and configure Spark session
     spark_conf = SparkConf().setAll(list(config.items()))
     spark = SparkSession.builder.config(conf=spark_conf).getOrCreate()
-    spark.sparkContext.setLogLevel("ERROR")
+    spark.sparkContext.setLogLevel("DEBUG")
 
     # Set scheduler pool
     _set_scheduler_pool(spark, scheduler_pool)
