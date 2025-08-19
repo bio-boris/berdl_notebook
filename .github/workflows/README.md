@@ -1,2 +1,3 @@
-* removed multi-platform builds due to space constraints, we could make another workflow file if we need it
-* removed cache because it takes way too longgti
+* Split up due to multiplatform builds
+* Experimenting with github actions cache set to min, as per the docs https://docs.docker.com/build/cache/backends/gha/
+* 
