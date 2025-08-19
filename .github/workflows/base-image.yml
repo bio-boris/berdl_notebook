@@ -41,6 +41,13 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch,suffix=-base
+            type=ref,event=pr,suffix=-base
+            type=semver,pattern={{version}},suffix=-base
+            type=semver,pattern={{major}}.{{minor}},suffix=-base
+            type=raw,value=base-latest,enable={{is_default_branch}}
+            
 
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
@@ -49,7 +56,7 @@ jobs:
 
       - name: Build and push Docker image
         id: build-and-push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile.base

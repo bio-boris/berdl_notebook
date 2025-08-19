@@ -1,4 +1,5 @@
-FROM ghcr.io/bio-boris/berdl_notebook-base:0.0.11
+ARG BASE_TAG=base-latest
+FROM ghcr.io/bio-boris/berdl_notebook-base:${BASE_TAG}
 # Python and java dependencies are updated in the base image
 # Don't forget to bump `berdl_notebook-base:0.0.X` in kube-spark-manager-image base version as well!
 COPY ./configs/extensions/ /configs/extensions/
