@@ -25,7 +25,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Update python and install dependencies
 WORKDIR /deps
 COPY pyproject.toml uv.lock .python-version /deps
-ENV UV_PROJECT_ENVIRONMENT=/opt/conda
-RUN pip install uv
-RUN uv sync --locked --inexact --no-dev
+#ENV UV_PROJECT_ENVIRONMENT=/opt/conda
+#RUN pip install uv
+#RUN uv sync --locked --inexact --no-dev
+
+
+ENV UV_SYSTEM_PYTHON=1
+RUN pip install uv && uv sync --locked --inexact --no-dev
+RUN uv pip install --system
 RUN rm -rf /home/jovyan/
