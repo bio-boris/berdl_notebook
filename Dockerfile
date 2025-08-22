@@ -1,7 +1,7 @@
 ARG BASE_TAG=base-latest
-FROM ghcr.io/bio-boris/berdl_notebook-base:${BASE_TAG}
+FROM ghcr.io/bio-boris/berdl_notebook_base:${BASE_TAG}
 # Python and java dependencies are updated in the base image
-# Don't forget to bump `berdl_notebook-base:0.0.X` in kube-spark-manager-image base version as well!
+# Don't forget to bump `berdl_notebook_base:0.0.X` in kube-spark-manager-image base version as well!
 COPY ./configs/extensions/ /configs/extensions/
 COPY ./configs/skel/* /etc/skel
 COPY ./scripts/entrypoint.sh /entrypoint.sh
