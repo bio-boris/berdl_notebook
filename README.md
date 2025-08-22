@@ -1,10 +1,9 @@
 # BERDL Notebook
 
-
-
 * Set up the user's environment
 * Installs custom dependencies
-  
+
+
 # Dockerfile.base Image
 * Use the official JupyterHub base image
 * Installs python dependencies
